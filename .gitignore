@@ -1,2 +1,5 @@
 /target
-SDL3.dll
+bin
+lib
+bin/*
+lib/*

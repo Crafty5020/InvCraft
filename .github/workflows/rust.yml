@@ -10,9 +10,29 @@ env:
   CARGO_TERM_COLOR: always
 
 jobs:
+  build-sdl3:
+
+    runs-on: ubuntu-24.04-arm
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Build
+      run: | 
+          cmake -S . -B build 
+          cmake --build build 
+          sudo cmake --install build --prefix /usr/local/sdl3
+    - name: Move so sdl files to respective folders
+      run: |
+        mkdir -p "$GITHUB_WORKSPACE/lib/sdl3"
+        mkdir -p "$GITHUB_WORKSPACE/bin/sdl3"
+        sudo mv /usr/local/sdl3/lib/* "$GITHUB_WORKSPACE/lib/sdl3/" 
+        sudo mv /usr/local/sdl3/bin/* "$GITHUB_WORKSPACE/bin/sdl3/"
+
+        
   test-server:
 
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04-arm
+    needs: build-sdl3
 
     steps:
     - uses: actions/checkout@v4
@@ -23,7 +43,8 @@ jobs:
       
   test-client:
 
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04-arm
+    needs: build-sdl3
 
     steps:
     - uses: actions/checkout@v4

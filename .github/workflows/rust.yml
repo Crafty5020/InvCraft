@@ -41,7 +41,7 @@ jobs:
         mkdir -p "$GITHUB_WORKSPACE/target/debug/"
         sudo mv /usr/local/sdl3/lib/* "$GITHUB_WORKSPACE/lib/" 
         ls "$GITHUB_WORKSPACE/lib" 
-        rm -rf "$GITHUB_WORKSPACE/lib"/cmake
+
         
 
         

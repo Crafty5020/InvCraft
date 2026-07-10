@@ -40,6 +40,7 @@ jobs:
         mkdir -p "$GITHUB_WORKSPACE/lib/sdl3"
         mkdir -p "$GITHUB_WORKSPACE/target/debug/"
         sudo mv /usr/local/sdl3/lib/* "$GITHUB_WORKSPACE/lib/" 
+        ls "$GITHUB_WORKSPACE/lib" 
         sudo mv "$GITHUB_WORKSPACE/lib/*.so" "$GITHUB_WORKSPACE/target/debug/"
 
         
